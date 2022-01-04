@@ -19,6 +19,7 @@ function NaverMap() {
   const locations = [
     {
       place: "제주 국제 공항",
+      webSite: "https://www.airport.co.kr/jeju/index.do",
       lat: 33.51037769855868,
       lng: 126.49137485571009,
     },
@@ -59,12 +60,17 @@ function NaverMap() {
         zIndex: 100,
       });
 
+      let contentString = [
+        '<div style="width:200px;text-align:center;padding:10px;"><b>',
+        locations[i].place,
+        '<a href="`${locations[i].webSite}`" target="_blank">www.airport.co.kr/jeju</a>',
+        "</b><br>-네이버 지도 -</div>",
+      ].join("");
+      //`${locations[i].webSite}`. , https://www.airport.co.kr/jeju/index.do
+
       // 생성된 마커의 정보를 xml형식으로
       let infoWindow = new naver.maps.InfoWindow({
-        content:
-          '<div style="width:100px;text-align:center;padding:10px;"><b>' +
-          locations[i].place +
-          "</b><br>-네이버 지도 -</div>",
+        content: contentString,
       });
 
       markers.push(marker);
